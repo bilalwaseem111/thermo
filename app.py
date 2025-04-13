@@ -264,7 +264,7 @@ def show_confetti():
 
 # Main App Content
 st.markdown("""
-    <h1 class='main-title'>Thermodynamics Toolbox</h1>
+    <h1 class='main-title'>My Thermodynamics Genius Lab</h1>
     <p class='sub-heading'>Professional-grade thermodynamic calculations and visualizations for engineers and scientists</p>
 """, unsafe_allow_html=True)
 
