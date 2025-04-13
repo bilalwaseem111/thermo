@@ -36,41 +36,40 @@ def load_css():
             min-height: 100vh;
         }
 
-       .main-title {
-    text-align: center;
-    font-size: 4.5rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin: 2rem 0;
-    background: linear-gradient(90deg, #00f5ff, #8a2be2, #00f5ff);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: glow 3s ease-in-out infinite alternate, gradientShift 6s ease-in-out infinite;
-    text-shadow: 0 0 10px rgba(138, 43, 226, 0.5), 0 0 20px rgba(0, 245, 255, 0.3);
-    padding-bottom: 0.75rem;
-    border-bottom: 3px solid rgba(255, 255, 255, 0.15);
-}
+        .main-title {
+            text-align: center;
+            font-size: 4.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin: 2rem 0;
+            background: linear-gradient(90deg, #00f5ff, #8a2be2, #00f5ff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 3s ease-in-out infinite alternate, gradientShift 6s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.5), 0 0 20px rgba(0, 245, 255, 0.3);
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.15);
+        }
 
-@keyframes glow {
-    0% {
-        text-shadow: 0 0 5px rgba(0, 245, 255, 0.4), 0 0 10px rgba(138, 43, 226, 0.3);
-    }
-    100% {
-        text-shadow: 0 0 20px rgba(0, 245, 255, 0.7), 0 0 40px rgba(138, 43, 226, 0.5);
-    }
-}
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px rgba(0, 245, 255, 0.4), 0 0 10px rgba(138, 43, 226, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(0, 245, 255, 0.7), 0 0 40px rgba(138, 43, 226, 0.5);
+            }
+        }
 
-@keyframes gradientShift {
-    0% {
-        background-position: 0% center;
-    }
-    100% {
-        background-position: 200% center;
-    }
-}
-
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
 
         .section-title {
             font-size: 2rem;
@@ -163,15 +162,14 @@ def load_css():
             margin-left: 0.5rem;
         }
 
-   .footer {
-    text-align: center;
-    margin-top: 5rem;
-    padding: 1.5rem;
-    color: black;
-    font-size: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
+        .footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding: 1.5rem;
+            color: black;
+            font-size: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
         .linkedin-link {
             display: inline-flex;
@@ -199,13 +197,31 @@ def load_css():
             transform: scale(1.1);
         }
 
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px rgba(56, 189, 248, 0.5);
-            }
-            to {
-                text-shadow: 0 0 15px rgba(56, 189, 248, 0.8), 0 0 20px rgba(56, 189, 248, 0.6);
-            }
+        /* Consistent Calculate Button Styling */
+        .stButton>button {
+            width: 100% !important;
+            border-radius: var(--border-radius) !important;
+            background: linear-gradient(to right, var(--primary), var(--secondary)) !important;
+            color: white !important;
+            font-weight: 600 !important;
+            padding: 0.5rem 1rem !important;
+            border: none !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease !important;
+            height: 42px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .stButton>button:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+            background: linear-gradient(to right, var(--secondary), var(--primary)) !important;
+        }
+
+        .stButton>button:active {
+            transform: translateY(0) !important;
         }
 
         @keyframes fadeIn {
@@ -302,14 +318,13 @@ def fig_to_bytes(fig):
 def entropy_calculator():
     with st.form("entropy_form", clear_on_submit=False):
         st.markdown('<div class="calculator-title">📈 Entropy Calculator (ΔS = Q/T)</div>', unsafe_allow_html=True)
-        col1, col2, col3 = st.columns([2,2,1])
+        col1, col2 = st.columns(2)
         with col1:
             Q = st.number_input("Heat (Q) [kJ]", min_value=0.0, step=0.1, key="entropy_Q", format="%.2f")
         with col2:
             T = st.number_input("Temp (T) [K]", min_value=0.1, step=0.1, key="entropy_T", format="%.2f")
-        with col3:
-            st.write("")  # Spacer
-            submitted = st.form_submit_button("Calculate", use_container_width=True)
+        
+        submitted = st.form_submit_button("Calculate")
         
         if submitted and T > 0:
             ΔS = Q / T
@@ -334,7 +349,8 @@ def enthalpy_calculator():
             P = st.number_input("Pressure [kPa]", min_value=0.0, step=0.1, key="enthalpy_P", format="%.2f")
         with col3:
             ΔV = st.number_input("ΔVolume [m³]", step=0.0001, format="%.4f", key="enthalpy_V")
-            submitted = st.form_submit_button("Calculate", use_container_width=True)
+        
+        submitted = st.form_submit_button("Calculate")
         
         if submitted:
             ΔH = U + (P * ΔV)
@@ -350,14 +366,13 @@ def enthalpy_calculator():
 def work_calculator():
     with st.form("work_form", clear_on_submit=False):
         st.markdown('<div class="calculator-title">⚡ Work Calculator (W = PΔV)</div>', unsafe_allow_html=True)
-        col1, col2, col3 = st.columns([2,2,1])
+        col1, col2 = st.columns(2)
         with col1:
             P = st.number_input("Pressure [kPa]", min_value=0.0, step=0.1, key="work_P", format="%.2f")
         with col2:
             ΔV = st.number_input("ΔVolume [m³]", step=0.0001, format="%.4f", key="work_V")
-        with col3:
-            st.write("")  # Spacer
-            submitted = st.form_submit_button("Calculate", use_container_width=True)
+        
+        submitted = st.form_submit_button("Calculate")
         
         if submitted:
             W = P * ΔV
@@ -373,14 +388,13 @@ def work_calculator():
 def efficiency_calculator():
     with st.form("efficiency_form", clear_on_submit=False):
         st.markdown('<div class="calculator-title">📊 Efficiency Calculator (η = W_out/Q_in)</div>', unsafe_allow_html=True)
-        col1, col2, col3 = st.columns([2,2,1])
+        col1, col2 = st.columns(2)
         with col1:
             W_out = st.number_input("Work Out [kJ]", min_value=0.0, step=0.1, key="eff_W", format="%.2f")
         with col2:
             Q_in = st.number_input("Heat In [kJ]", min_value=0.1, step=0.1, key="eff_Q", format="%.2f")
-        with col3:
-            st.write("")  # Spacer
-            submitted = st.form_submit_button("Calculate", use_container_width=True)
+        
+        submitted = st.form_submit_button("Calculate")
         
         if submitted and Q_in > 0:
             η = (W_out / Q_in) * 100
@@ -522,6 +536,5 @@ st.markdown("""
         <img src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" class="linkedin-logo" alt="LinkedIn">
     </a>
     </p>
-   
 </div>
 """, unsafe_allow_html=True)
