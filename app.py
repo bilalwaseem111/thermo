@@ -6,7 +6,7 @@ from streamlit.components.v1 import html # type: ignore
 
 # Page Configuration
 st.set_page_config(
-    page_title="My Thermodynamics Toolbox",
+    page_title="My Thermodynamics Genius Lab",
     layout="wide",
     initial_sidebar_state="expanded"
 )
