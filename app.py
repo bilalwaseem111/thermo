@@ -29,11 +29,27 @@ def load_css():
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            /* Animated Gradient Background */
             background: linear-gradient(135deg, #0f172a, #1e293b);
+            background-size: 400% 400%;
+            animation: gradientBackground 10s ease infinite;
             color: var(--light);
             margin: 0;
             padding: 0;
             min-height: 100vh;
+        }
+
+        /* Keyframes for gradient animation */
+        @keyframes gradientBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .main-title {
@@ -237,10 +253,23 @@ def load_css():
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-title {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
+
             .section-title {
-                font-size: 1.8rem;
+                font-size: 1.75rem;
+            }
+
+            .calculator-card {
+                padding: 1rem;
+            }
+
+            .footer {
+                font-size: 1.5rem;
+            }
+
+            .concept-card {
+                margin: 0.5rem 0;
             }
         }
     </style>
